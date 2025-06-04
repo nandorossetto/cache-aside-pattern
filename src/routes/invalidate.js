@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const redis = require("../db/redis");
-router.route("/invalidate-cache/:id").post(async(req, res) => {
-    const invalidateCacheKey = req.params.id;
+router.route("/invalidate-cache/:cacheKey").post(async(req, res) => {
+    const invalidateCacheKey = req.params.cacheKey;
     const isDeleted = await redis.del(invalidateCacheKey);
     console.log(invalidateCacheKey, isDeleted);
     if(isDeleted){
